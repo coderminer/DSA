@@ -10,7 +10,7 @@ class SingleList(object):
         self.tail = None 
 
 
-    def add(self,val):
+    def addFromTail(self,val):
         n = Node(val,None)
         if not self.head:
             self.head = n
@@ -18,6 +18,15 @@ class SingleList(object):
         else:
             self.tail.next = n
             self.tail = n
+
+    def addFromHead(self,val):
+        n = Node(val,None)
+        if not self.head:
+            self.head = n
+            self.tail = n
+        else:
+            n.next = self.head
+            self.head = n
 
 
     def contails(self,val):
@@ -71,10 +80,10 @@ class SingleList(object):
 if __name__ == '__main__':
     sl = SingleList()
 
-    sl.add(3)
-    sl.add(5)
-    sl.add(8)
-    sl.add(18)
+    for i in range(0,10):
+        sl.addFromTail(i)
+    sl.addFromHead(23)
+
     sl.display()
     print("\n")
     sl.reverse()

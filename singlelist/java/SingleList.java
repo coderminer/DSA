@@ -7,7 +7,7 @@ public class SingleList {
     private Node tail;
 
 
-    public void add(Object v){
+    public void addFromTail(Object v){
         Node node = new Node(v);
         if(this.head == null){
             this.head = node;
@@ -15,6 +15,17 @@ public class SingleList {
         }else{
             this.tail.next = node;
             this.tail = node;
+        }
+    }
+
+    public void addFromHead(Object v){
+        Node node = new Node(v);
+        if(this.head == null){
+            this.head = node;
+            this.tail = node;
+        }else{
+            node.next = this.head;
+            this.head = node;
         }
     }
 
@@ -82,8 +93,11 @@ public class SingleList {
         SingleList sl = new SingleList();
 
         for (int i = 0; i < 10; i++) {
-            sl.add(i);
+            sl.addFromTail(i);
         }
+
+        sl.addFromHead(67);
+        sl.addFromHead(78);
 
         sl.display();
         

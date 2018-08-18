@@ -14,7 +14,7 @@ type SingleList struct {
 	tail *Node
 }
 
-func (l *SingleList) Add(val interface{}) {
+func (l *SingleList) AddFromTail(val interface{}) {
 	n := &Node{val: val, next: nil}
 	if l.head == nil {
 		l.head = n
@@ -22,6 +22,17 @@ func (l *SingleList) Add(val interface{}) {
 	} else {
 		l.tail.next = n
 		l.tail = n
+	}
+}
+
+func (l *SingleList) AddFromHead(val interface{}) {
+	n := &Node{val: val, next: nil}
+	if l.head == nil {
+		l.head = n
+		l.tail = n
+	} else {
+		n.next = l.head
+		l.head = n
 	}
 }
 
@@ -76,10 +87,11 @@ func (l *SingleList) Display() {
 func main() {
 	sl := SingleList{}
 
-	sl.Add(4)
-	sl.Add(5)
-	sl.Add(7)
-	sl.Add(8)
+	for i := 0; i < 10; i++ {
+		sl.AddFromTail(i)
+	}
+	sl.AddFromHead(34)
+	sl.AddFromHead(32)
 
 	sl.Display()
 	fmt.Println("")
