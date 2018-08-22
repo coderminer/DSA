@@ -5,6 +5,9 @@ public class BinarySearchTree {
 
     public TreeNode root;
 
+    private int leftH;
+    private int rightH;
+
     public void add(int data){
         TreeNode node = new TreeNode(data);
         if(this.root == null){
@@ -114,6 +117,48 @@ public class BinarySearchTree {
         return true;
     }
 
+    public int height(){
+        //BinarySearchTree.classSystem.out.println("left: "+leftHeight(this.root)+" right: "+rightHeight(this.root));
+
+        int height = Math.max(leftHeight(this.root),rightHeight(this.root));
+        if(this.root != null){
+            return height + 1;
+        }
+        return 0;
+    }
+
+    private int leftHeight(TreeNode root){
+        
+        if(root.left != null){
+            leftH += 1;
+            leftHeight(root.left);
+        }
+        return leftH;
+    }
+
+    private int rightHeight(TreeNode root){
+        
+        if(root.right != null){
+            rightH += 1;
+            rightHeight(root.right);
+        }
+        return rightH;
+    }
+
+    private int height(TreeNode root){
+        int h = 0;
+        if(root != null){
+            h += 1;
+        }
+        if(root.left != null){
+            height(root.left);
+        }
+        if(root.right != null){
+            height(root.right);
+        }
+        return h;
+    }
+
     public void preOrder(){
         preOrder(this.root);
     }
@@ -159,9 +204,8 @@ public class BinarySearchTree {
         tree.add(4);
         tree.add(1);
 
-        System.out.println(tree.root.data+" left: "+tree.root.left.data+" right: "+tree.root.right.data);
-        tree.remove(10);
-        tree.preOrder();
+        System.out.println(tree.height());
+        //tree.height();
         
     }
 }
