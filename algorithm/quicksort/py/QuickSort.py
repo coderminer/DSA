@@ -39,9 +39,26 @@ class QuickSort(object):
             self.quickSort2(arr, left, p - 1)
             self.quickSort2(arr, p + 1, right)
 
+    def quickSort3(self,arr,left,right):
+        while left < right:
+            p = self.partition(arr,left,right)
+            self.quickSort3(arr,left,p - 1)
+            left = p + 1
+
+    def quickSort4(self,arr,left,right):
+        while left < right:
+            p = self.partition(arr,left,right)
+            if p - left < right - p:
+                self.quickSort4(arr,left,p - 1)
+                left = p + 1
+            else:
+                self.quickSort4(arr,p + 1,right)
+                right = p - 1
+
+
 
 if __name__ == '__main__':
     qs = QuickSort()
     arr = [4, 9, 4, 4, 1, 9, 4, 4, 9, 4, 4, 1, 4]
-    qs.quickSort2(arr, 0, len(arr) - 1)
+    qs.quickSort4(arr, 0, len(arr) - 1)
     print(arr)
